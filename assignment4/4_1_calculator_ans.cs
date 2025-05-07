@@ -50,7 +50,61 @@ namespace calculator
     public class Calculator
     {
         // ---------- TODO ----------
-        
+        public static int Gcd(int a, int b)
+        {
+            if(b==0) return a;
+            return Gcd(b, a%b);
+        }
+        public static int Lcm(int a, int b)
+        {
+            if(a==0 || b==0) return 0;
+            int gcd = Gcd(a, b);
+            return (a/gcd)*b;
+        }
+
+        public double Calculate(double num1, string op, double num2)
+        {
+            double ret;
+            switch(op) {
+                case "+":
+                    ret = num1 + num2;
+                    break;
+
+                case "-":
+                    ret = num1 - num2;
+                    break;
+
+                case "*":
+                    ret = num1 * num2;
+                    break;
+
+                case "/":
+                    if(num2==0)
+                        throw new DivideByZeroException("Division by zero is not allowed");
+                    ret = num1 / num2;
+                    break;
+
+                case "**":
+                    ret = Math.Pow(num1, num2);
+                    break;
+
+                case "%":
+                    ret = ((int)num1 % (int)num2);
+                    break;
+
+                case "G":
+                    ret = Gcd((int)num1, (int)num2);
+                    break;
+
+                case "L":
+                    ret = Lcm((int)num1, (int)num2);
+                    break;
+
+                default:
+                    throw new InvalidOperationException("Invalid operator");
+            }
+            return ret;
+        }
         // --------------------
     }
 }

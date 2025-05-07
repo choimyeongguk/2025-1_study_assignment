@@ -11,7 +11,40 @@ namespace star
             int size = 2 * (radius + 1);
 
             // ---------- TODO ----------
+            char[,] image = new char[size, size * 2];
+            for(int i = 0; i < size; i++)
+            {
+                for(int j = 0; j < size*2; j++)
+                {
+                    image[i,j] = ' ';
+                }
+            }
+            for(int i = 0; i < radius*2+1; i++)
+            {
+                image[1,i] = '*';
+                image[size-1,i] = '*';
+            }
+            for(int i = 1; i < size; i++) {
+                image[i,0] = '*';
+            }
 
+            int r = size/3;
+            for(int i = 0; i < size; i++) {
+                image[r, size+i] = '*';
+                image[i, size+r] = '*';
+            }
+            r = size*2/3;
+            for(int i = 0; i < size; i++) {
+                image[r, size+i] = '*';
+                image[i, size+r] = '*';
+            }
+
+            for(int i = 0; i < size; i++) {
+                for(int j = 0; j < size*2; j++) {
+                    Console.Write(image[i,j]);
+                }
+                Console.WriteLine("\n");
+            }
             // --------------------
         }
 
